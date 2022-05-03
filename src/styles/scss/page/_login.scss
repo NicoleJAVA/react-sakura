@@ -1,0 +1,15 @@
+ // login box
+ $login-box-margin: 150px;
+ $login-box-width: 400px;
+
+ // login card
+ $login-card-width: 400px;
+
+ .login-box {
+   margin: $login-box-margin auto;
+   width: $login-box-width;
+ }
+
+.login-card {
+  width: $login-card-width;
+}
