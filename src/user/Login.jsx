@@ -41,6 +41,9 @@ export default class Login extends React.Component{
         localStorage.setItem('token', data.token);
         localStorage.setItem('userId', data.id);
         localStorage.setItem('username', data.username );
+
+        const {history} = this.props;
+        history.push({pathname: '/admin'});
       } else {
         message.error('帳號或密碼錯誤');
       }
