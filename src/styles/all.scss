@@ -2,5 +2,9 @@
 // base
 @import './scss/base/base';
 
+// helpers
+@import './scss/helpers/text';
+
 // page
 @import './scss/page/login';
+@import './scss/page/admin';

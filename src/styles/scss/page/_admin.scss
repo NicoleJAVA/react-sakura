@@ -1,0 +1,16 @@
+// menu title
+$menu-title-height: 32px;
+$menu-title-margin: 10px;
+
+// menu layout
+$menu-layout-min-height: 100vh;
+
+.menu-title {
+    height: $menu-title-height;
+    margin: $menu-title-margin;
+    color: white;
+}
+
+.admin-menu-layout {
+    min-height: $menu-layout-min-height !important;
+}
