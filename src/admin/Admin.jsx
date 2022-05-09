@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import {Layout, Menu, Breadcrumb, Input, Icon, Button, message} from 'antd';
 import axios from 'axios';
 import ApiUrl from '../config/api_url';
