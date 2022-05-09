@@ -3,6 +3,9 @@ import ReactDOM from 'react-dom';
 import {Layout, Menu, Breadcrumb, Input, Icon, Button, message} from 'antd';
 import axios from 'axios';
 import ApiUrl from '../config/api_url';
+import { Route } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
+import UserList from '../user/UserList';
 
 const { Content, Footer, Sider } = Layout;
 const { SubMenu } = Menu;
@@ -78,10 +81,18 @@ export default class Admin extends React.Component{
               </Sider>
 
               {/* right side: main content */}
-              <Layout>
-                  <Content>
-
+              <Layout> 
+                  <Content className="admin-content">
+                      <Breadcrumb className="admin-breadcrumb">
+                        <Breadcrumb.Item>後台管理</Breadcrumb.Item>
+                        <Breadcrumb.Item>工作台</Breadcrumb.Item>
+                      </Breadcrumb>
+                      <div className="admin-route-container">
+                        <Route path="/admin/user/list" component={UserList}/>
+                        <Redirect to="/admin/user/list" />
+                      </div>
                   </Content>
+                  <Footer>Sakura Shop</Footer>
               </Layout>
           </Layout>
       );

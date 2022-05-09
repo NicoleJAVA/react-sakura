@@ -5,6 +5,16 @@ $menu-title-margin: 10px;
 // menu layout
 $menu-layout-min-height: 100vh;
 
+// content
+$admin-content-margin-x: 16px;
+
+// breadcrumb
+$admin-breadcrumb-margin-y: 16px;
+
+// route container
+$admin-route-container-padding: 24px;
+$admin-route-container-minheight: 360px;
+
 .menu-title {
     height: $menu-title-height;
     margin: $menu-title-margin;
@@ -13,4 +23,18 @@ $menu-layout-min-height: 100vh;
 
 .admin-menu-layout {
     min-height: $menu-layout-min-height !important;
+}
+
+.admin-content {
+    margin: 0 $admin-content-margin-x;
+}
+
+.admin-breadcrumb {
+    margin: $admin-breadcrumb-margin-y 0 !important;
+}
+
+.admin-route-container {
+    padding: $admin-route-container-padding !important;
+    min-height: $admin-route-container-minheight !important;
+    background: white;
 }
