@@ -1,10 +1,9 @@
 import React from 'react';
 import {Layout, Menu, Breadcrumb, Input, Icon, Button, message} from 'antd';
-import axios from 'axios';
-import ApiUrl from '../config/api_url';
 import { Route } from 'react-router-dom';
 import { Redirect } from 'react-router-dom';
 import UserList from '../user/UserList';
+import CategoryList from '../category/CategoryList';
 
 const { Content, Footer, Sider } = Layout;
 const { SubMenu } = Menu;
@@ -15,6 +14,9 @@ export default class Admin extends React.Component{
     super(props);
   }
 
+  onClickCategoryList = (e) => {
+      this.props.history.push('/admin/category/list');
+  };
 
 
   render(){
@@ -67,7 +69,7 @@ export default class Admin extends React.Component{
                     }
                   >
 
-                    <Menu.Item key="categoryList">
+                    <Menu.Item key="categoryList" onClick={this.onClickCategoryList}>
                       <Icon type="file"/>
                         <span>分類列表</span> 
                     </Menu.Item> 
@@ -88,6 +90,7 @@ export default class Admin extends React.Component{
                       </Breadcrumb>
                       <div className="admin-route-container">
                         <Route path="/admin/user/list" component={UserList}/>
+                        <Route path="/admin/category/list" component={CategoryList}/>
                         <Redirect to="/admin/user/list" />
                       </div>
                   </Content>
