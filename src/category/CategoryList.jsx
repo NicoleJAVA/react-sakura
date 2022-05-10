@@ -42,6 +42,7 @@ export default class CategoryList extends React.Component{
   };
 
   updateCategory = (id) => {
+    this.props.history.push('/admin/category/edit/' + id);
   };
 
   render(){

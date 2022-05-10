@@ -4,6 +4,7 @@ import { Route } from 'react-router-dom';
 import { Redirect } from 'react-router-dom';
 import UserList from '../user/UserList';
 import CategoryList from '../category/CategoryList';
+import EditCategory from '../category/EditCategory';
 
 const { Content, Footer, Sider } = Layout;
 const { SubMenu } = Menu;
@@ -91,6 +92,7 @@ export default class Admin extends React.Component{
                       <div className="admin-route-container">
                         <Route path="/admin/user/list" component={UserList}/>
                         <Route path="/admin/category/list" component={CategoryList}/>
+                        <Route path="/admin/category/edit/:id" component={EditCategory}/>
                         <Redirect to="/admin/user/list" />
                       </div>
                   </Content>
