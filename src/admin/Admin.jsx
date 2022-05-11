@@ -5,6 +5,7 @@ import { Redirect } from 'react-router-dom';
 import UserList from '../user/UserList';
 import CategoryList from '../category/CategoryList';
 import EditCategory from '../category/EditCategory';
+import AddCategory from '../category/AddCategory';
 
 const { Content, Footer, Sider } = Layout;
 const { SubMenu } = Menu;
@@ -19,6 +20,10 @@ export default class Admin extends React.Component{
       this.props.history.push('/admin/category/list');
   };
 
+
+  onClickAddCategory = (e) => {
+    this.props.history.push('/admin/category/add');
+};
 
   render(){
       return(
@@ -74,7 +79,7 @@ export default class Admin extends React.Component{
                       <Icon type="file"/>
                         <span>分類列表</span> 
                     </Menu.Item> 
-                    <Menu.Item key="addCategory">
+                    <Menu.Item key="addCategory" onClick={this.onClickAddCategory}>
                       <Icon type="file"/>
                         <span>新增分類</span> 
                     </Menu.Item> 
@@ -92,6 +97,7 @@ export default class Admin extends React.Component{
                       <div className="admin-route-container">
                         <Route path="/admin/user/list" component={UserList}/>
                         <Route path="/admin/category/list" component={CategoryList}/>
+                        <Route path="/admin/category/add" component={AddCategory}/>
                         <Route path="/admin/category/edit/:id" component={EditCategory}/>
                         <Redirect to="/admin/user/list" />
                       </div>
