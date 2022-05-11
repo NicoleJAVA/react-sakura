@@ -47,6 +47,28 @@ export default class AddCategory extends React.Component{
         });
     };
 
+    setCategoryName = (name) => {
+        this.setState({
+            name: name,
+        });
+    }
+
+    setLevel = (level) => {
+        this.setState({
+            level: level,
+        });
+    }
+
+    setParentId = (pid) => {
+        this.setState({
+            pid: pid,
+        });
+    }
+
+    onClickSubmit = () => {
+        // todo: submit form
+    };
+
   render(){
       let {categoryList} = this.state;
       let parentList = [];
@@ -72,8 +94,28 @@ export default class AddCategory extends React.Component{
         <div className="category-layout">
           <Card>
               <Form>
-                  <Form.Item label="父類別名稱">
-                      <Select className='add-category-select' defaultValue={this.state.pid} value={this.state.pid}>
+                  <Form.Item label="分類名稱">
+                      <Input 
+                        className="add-category-input"
+                        placeholder="子分類名稱"
+                        value={this.state.name}
+                        onChange={(e) => {this.setCategoryName(e.target.value)}}
+                      />
+                  </Form.Item>
+                  <Form.Item label="分類等級">
+                      <Select className='add-category-select' 
+                        defaultValue={this.state.level} 
+                        value={this.state.level}
+                        onSelect = {this.setLevel}
+                        >
+                          <Option value="V1">一級分類</Option>
+                          <Option value="V2">二級分類</Option>
+                      </Select>
+                  </Form.Item>
+                  <Form.Item label="父分類名稱">
+                      <Select className='add-category-select' defaultValue={this.state.pid} value={this.state.pid}
+                        onSelect = {this.setParentId}
+                      >
                           {
                               parentList.map(item => (
                                   <Option key ={item.id} value={item.id}>{item.name}</Option>
@@ -81,6 +123,7 @@ export default class AddCategory extends React.Component{
                           }
                       </Select>
                   </Form.Item>
+                  <Button type="primary" className="add-category-submit-btn" onClick={this.onClickSubmit}>確定</Button>
               </Form>
           </Card>
         </div>
