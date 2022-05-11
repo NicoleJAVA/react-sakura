@@ -69,6 +69,20 @@ export default class AddCategory extends React.Component{
         // todo: submit form
     };
 
+    onUploadChange = (file, fileList, event) => {
+        if (file.file.status === 'done') {
+            console.log('檔案', file.fileList);
+            let result = [];
+            file.fileList.forEach((item, index) => {
+                result.push(item.response.url);
+            });
+            this.setState({
+                image: result[0].toString(),
+            });
+            console.log('圖片', this.state.image);
+        }
+    };
+
   render(){
       let {categoryList} = this.state;
       let parentList = [];
@@ -122,6 +136,17 @@ export default class AddCategory extends React.Component{
                               ))
                           }
                       </Select>
+                  </Form.Item>
+                  <Form.Item label="分類圖示">
+                      <Upload
+                        headers={TokenHeaders}
+                        accept="images/*"
+                        listType="picture-card"
+                        action={ApiUrl.UPLOAD_CATEGORY}
+                        onChange={this.onUploadChange}
+                      >
+                          {uploadButton}
+                      </Upload>
                   </Form.Item>
                   <Button type="primary" className="add-category-submit-btn" onClick={this.onClickSubmit}>確定</Button>
               </Form>

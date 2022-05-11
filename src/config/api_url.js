@@ -6,6 +6,8 @@ const ApiUrl = {
   CATEGORY_ALL: '/api/admin/category/all',
 
   CATEGORY_DELETE: '/api/admin/category/delete',
+
+  UPLOAD_CATEGORY: '/api/admin/upload/category',
 };
 
 export default ApiUrl;
