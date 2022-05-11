@@ -1,9 +1,10 @@
 import React from 'react';
-import {List, Avatar, Button, Row, Col} from 'antd';
+import {List, Avatar, Button, Row, Col, Modal, message} from 'antd';
 import axios from 'axios';
 import ApiUrl from '../config/api_url';
 import TokenHeaders from '../utils/tokenUtils';
 
+const {confirm} = Modal;
 export default class CategoryList extends React.Component{
 
   constructor(props) {
@@ -39,6 +40,28 @@ export default class CategoryList extends React.Component{
   };
 
   deleteCategory = (id) => {
+      let dataProps = {
+          'id': id,
+      };
+      confirm({
+          title: '是否確定刪除此分類？',
+          content: "若您點擊確認按鈕，此分類將被永久刪除，無法復原。",
+          okText: '確認',
+          cancelText: '取消',
+          onOk() {
+            axios({
+                method: "post",
+                url: ApiUrl.CATEGORY_DELETE,
+                headers: TokenHeaders,
+                data: dataProps,
+            }).then(res => {
+                message.success('刪除成功');              
+            });
+          },
+          onCancel() {
+            message.success('刪除失敗');
+          },
+      });
   };
 
   updateCategory = (id) => {
