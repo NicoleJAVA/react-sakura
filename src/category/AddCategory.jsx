@@ -2,7 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import ApiUrl from '../config/api_url';
 import TokenHeaders from '../utils/tokenUtils';
-import {List, Avatar, Button, Row, Col, Select, Card, Input, Upload, Dividers, Form} from 'antd';
+import {Button, Select, Card, Input, Upload, Form} from 'antd';
 import {PlusOutlined} from '@ant-design/icons';
 
 const {Option} = Select;
@@ -66,12 +66,38 @@ export default class AddCategory extends React.Component{
     }
 
     onClickSubmit = () => {
-        // todo: submit form
+        this.setState({
+            modelVisible: false,
+        });
+
+        let dataProps = {
+            'id': this.state.id,
+            'image': this.state.image,
+            'name': this.state.name,
+            'level': this.state.level,
+            'pid': this.state.pid,
+        };
+
+        axios({
+            method: "post",
+            url: ApiUrl.CATEGORY_ADD,
+            headers: TokenHeaders,
+            data: dataProps,
+        }).then(res => {
+          this.props.history.push('/admin/category/list');
+        });
+    };
+
+    onClickCancel = () => {
+        this.setState({
+            modelVisible: false,
+        });
+        this.props.history.push('/admin/category/list');
     };
 
     onUploadChange = (file, fileList, event) => {
         if (file.file.status === 'done') {
-            console.log('檔案', file.fileList);
+            // console.log('檔案', file.fileList);
             let result = [];
             file.fileList.forEach((item, index) => {
                 result.push(item.response.url);
@@ -79,7 +105,7 @@ export default class AddCategory extends React.Component{
             this.setState({
                 image: result[0].toString(),
             });
-            console.log('圖片', this.state.image);
+            // console.log('圖片', this.state.image);
         }
     };
 

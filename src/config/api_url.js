@@ -7,6 +7,8 @@ const ApiUrl = {
 
   CATEGORY_DELETE: '/api/admin/category/delete',
 
+  CATEGORY_ADD: '/api/admin/category/add',
+
   UPLOAD_CATEGORY: '/api/admin/upload/category',
 };
 
