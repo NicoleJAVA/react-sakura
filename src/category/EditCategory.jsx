@@ -4,7 +4,7 @@ import ApiUrl from '../config/api_url';
 import TokenHeaders from '../utils/tokenUtils';
 import {Button, Select, Card, Input, Upload, Form} from 'antd';
 import {PlusOutlined} from '@ant-design/icons';
-
+import printArray from '../utils/LogUtils';
 const {Option} = Select;
 
 export default class EditCategory extends React.Component{
@@ -32,7 +32,6 @@ export default class EditCategory extends React.Component{
 
     getCategoryList = () => {
         let id = this.props.match.params.id;
-        console.log('測試: ID', id);
         axios({
             method: "get",
             url: ApiUrl.CATEGORY_ALL,
@@ -66,9 +65,34 @@ export default class EditCategory extends React.Component{
     }
 
     setLevel = (level) => {
-        this.setState({
-            level: level,
+        let parentListV0 = [];
+        let parentListV1 = [];
+
+        this.state.categoryList.forEach((item, index) => {
+          if (item.level === 'V0') {
+            parentListV0.push(item);
+          } else if (item.level === 'V1') {
+            parentListV1.push(item);
+          }
         });
+
+        if (level === 'V1') {
+        //   console.log('測試: 目前等級', this.state.level, '將變為 V1,');
+        //   printArray(parentListV0, 'parent 將變成這層陣列');
+        //   console.log('先暫時取第一個來當作 parent: ', parentListV0[0].name);
+          this.setState({
+            level: level,
+            pid: parentListV0[0].id,
+          });
+        } else  if (level === 'V2') {
+            // console.log('測試: 目前等級', this.state.level, '將變為 V2,');
+            // printArray(parentListV1, 'parent 將變成這層陣列');
+            // console.log('先暫時取第一個來當作 parent: ', parentListV1[0].name);
+            this.setState({
+              level: level,
+              pid: parentListV1[0].id,
+            });
+          }
     }
 
     setParentId = (pid) => {
@@ -88,7 +112,7 @@ export default class EditCategory extends React.Component{
 
         axios({
             method: "post",
-            url: ApiUrl.CATEGORY_ADD,
+            url: ApiUrl.CATEGORY_EDIT,
             headers: TokenHeaders,
             data: dataProps,
         }).then(res => {

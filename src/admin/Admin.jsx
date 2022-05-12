@@ -31,7 +31,10 @@ export default class Admin extends React.Component{
               {/* left side menu */}
               <Sider>
                   <div className="menu-title fs-xl">商城後台管理系統</div>
-                  <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline">
+                  <Menu theme="dark" 
+                    defaultSelectedKeys={['1']} 
+                    mode="inline" 
+                    defaultOpenKeys={['/user', '/product', '/category']}>
                       <Menu.Item key="1">
                           <Icon type="pie-chart"/>
                           <span>首頁</span>

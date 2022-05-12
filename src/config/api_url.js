@@ -9,6 +9,8 @@ const ApiUrl = {
 
   CATEGORY_ADD: '/api/admin/category/add',
 
+  CATEGORY_EDIT: '/api/admin/category/edit',
+
   UPLOAD_CATEGORY: '/api/admin/upload/category',
 };
 
