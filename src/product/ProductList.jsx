@@ -26,6 +26,13 @@ export default class ProductList extends React.Component{
       }).then(res => {
         let data = res.data.data;
 
+        data.forEach((item, index) => {
+          item.image = item.images.split(',')[0];
+        });
+
+        this.setState({
+          productList: data,
+        });
       });
   };
 
@@ -72,7 +79,7 @@ export default class ProductList extends React.Component{
                         <Col span={6}>
                             <b>名稱</b>
                         </Col>
-                        <Col span={8}>
+                        <Col span={8} className="text-center">
                             <b>價格</b>
                         </Col>
                         <Col span={3}>
@@ -96,11 +103,13 @@ export default class ProductList extends React.Component{
                             <Col span={6}>
                                 {item.name}
                             </Col>
-                            <Col span={8}>
-                                {item.price}
+                            <Col span={8} className="text-center">
+                                ${item.price}
                             </Col>
                             <Col span={3}>
-                                <Button type="primary" onClick={(e) => {this.editProduct(item.id)}}>編輯</Button>
+                                <Button type="primary" onClick={(e) => {this.editProduct(item.id)}}
+                                    className="me-2"
+                                >編輯</Button>
                                 <Button type="primary" onClick={(e) => {this.deleteProduct(item.id)}}>刪除</Button>
                             </Col>
                         </Row>

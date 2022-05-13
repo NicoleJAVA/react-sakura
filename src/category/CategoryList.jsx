@@ -110,7 +110,9 @@ export default class CategoryList extends React.Component{
                                 {item.level}
                             </Col>
                             <Col span={6}>
-                                <Button type="primary" onClick={(e) => {this.updateCategory(item.id)}}>編輯</Button>
+                                <Button type="primary" onClick={(e) => {this.updateCategory(item.id)}}
+                                    className="me-2"
+                                >編輯</Button>
                                 <Button type="primary" onClick={(e) => {this.deleteCategory(item.id)}}>刪除</Button>
                             </Col>
                         </Row>
