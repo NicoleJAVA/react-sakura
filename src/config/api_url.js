@@ -1,32 +1,33 @@
 const ApiUrl = {
-  
   // user:
 
-  USER_LOGIN : '/api/user/login',
+  USER_LOGIN: "/api/user/login",
 
-  USER_LIST: '/api/admin/user/list',
+  USER_LIST: "/api/admin/user/list",
 
-  // category: 
+  // category:
 
-  CATEGORY_ALL: '/api/admin/category/all',
+  CATEGORY_ALL: "/api/admin/category/all",
 
-  CATEGORY_DELETE: '/api/admin/category/delete',
+  CATEGORY_DELETE: "/api/admin/category/delete",
 
-  CATEGORY_ADD: '/api/admin/category/add',
+  CATEGORY_ADD: "/api/admin/category/add",
 
-  CATEGORY_EDIT: '/api/admin/category/edit',
+  CATEGORY_EDIT: "/api/admin/category/edit",
 
-  UPLOAD_CATEGORY: '/api/admin/upload/category',
+  UPLOAD_CATEGORY: "/api/admin/upload/category",
 
-  // product: 
+  CATEGORY_SUB: "/api/admin/category/sub",
 
-  PRODUCT_LIST: '/api/admin/good/list',
+  // product:
 
-  PRODUCT_DELETE: '/api/admin/good/delete',
+  PRODUCT_LIST: "/api/admin/good/list",
 
-  PRODUCT_ADD: '/api/admin/good/add',
+  PRODUCT_DELETE: "/api/admin/good/delete",
 
-  PRODUCT_EDIT: '/api/admin/good/edit',
+  PRODUCT_ADD: "/api/admin/good/add",
+
+  PRODUCT_EDIT: "/api/admin/good/edit",
 };
 
 export default ApiUrl;

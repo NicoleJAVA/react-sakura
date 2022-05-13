@@ -2,9 +2,10 @@ import React from "react";
 import axios from "axios";
 import ApiUrl from "../config/api_url";
 import TokenHeaders from "../utils/tokenUtils";
-import { Button, Select, Card, Input, Upload, Form } from "antd";
+import { Button, Select, Input, Upload, Form } from "antd";
 import { PlusOutlined } from "@ant-design/icons";
 import E from "wangeditor";
+import printArray from "../utils/LogUtils";
 
 const { Option } = Select;
 
@@ -22,7 +23,6 @@ export default class AddProduct extends React.Component {
       images: "",
       detail: "",
       freight: "0",
-
       v1List: [],
       v2List: [],
     };
@@ -30,7 +30,7 @@ export default class AddProduct extends React.Component {
 
   componentDidMount() {
     this._isMounted = true;
-    // this.getProductList();
+    this.getCategoryList();
   }
 
   componentWillUnmount() {
@@ -44,8 +44,36 @@ export default class AddProduct extends React.Component {
       headers: TokenHeaders,
     }).then((res) => {
       let data = res.data.data;
+      let v1List = [];
+      data.forEach((item, index) => {
+        if (item.level === "V1") {
+          v1List.push(item);
+          //   printArray(v1List, "新增 " + item.name + " 至 v1List");
+        }
+      });
 
-      // TODO: handle category events
+      if (this._isMounted) {
+        this.setState({
+          v1List: v1List,
+        });
+      }
+    });
+  };
+
+  onV1SelectChanged = (id) => {
+    let url = ApiUrl.CATEGORY_SUB + "?pid=" + id;
+    axios({
+      method: "get",
+      url: url,
+      headers: TokenHeaders,
+    }).then((res) => {
+      let data = res.data.data;
+      if (this._isMounted) {
+        this.setState({
+          v2List: data,
+        });
+      }
+      printArray(this.state.v2List);
     });
   };
 
@@ -199,6 +227,22 @@ export default class AddProduct extends React.Component {
               this.setProductAmount(e.target.value);
             }}
           ></Input>
+        </Form.Item>
+        <Form.Item label="分類" className="me-2">
+          <Select className="theme-select" onSelect={this.onV1SelectChanged}>
+            {this.state.v1List.map((item) => (
+              <Option key={item.id} value={item.id}>
+                {item.name}
+              </Option>
+            ))}
+          </Select>
+          <Select className="theme-select">
+            {this.state.v2List.map((item) => (
+              <Option key={item.id} value={item.id}>
+                {item.name}
+              </Option>
+            ))}
+          </Select>
         </Form.Item>
       </Form>
     );
