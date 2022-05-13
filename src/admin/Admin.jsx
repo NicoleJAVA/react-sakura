@@ -16,6 +16,10 @@ export default class Admin extends React.Component{
     super(props);
   }
 
+  onClickUserList = (e) => {
+      this.props.history.push('/admin/user/list');
+  };
+
   onClickCategoryList = (e) => {
       this.props.history.push('/admin/category/list');
   };
