@@ -8,6 +8,7 @@ import CategoryList from '../category/CategoryList';
 import EditCategory from '../category/EditCategory';
 import AddCategory from '../category/AddCategory';
 import ProductList from '../product/ProductList';
+import AddProduct from '../product/AddProduct';
 
 const { Content, Footer, Sider } = Layout;
 const { SubMenu } = Menu;
@@ -30,13 +31,16 @@ export default class Admin extends React.Component{
       this.props.history.push('/admin/category/list');
   };
 
-
   onClickAddCategory = (e) => {
     this.props.history.push('/admin/category/add');
   };
 
   onClickProductList = (e) => {
     this.props.history.push('/admin/product/list');
+  };
+
+  onClickAddProduct = (e) => {
+    this.props.history.push('/admin/product/add');
   };
 
   render(){

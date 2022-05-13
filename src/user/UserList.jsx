@@ -36,7 +36,7 @@ export default class UserList extends React.Component{
         <div>
             <List
                 header={
-                    <Row className="user-list-row">
+                    <Row className="100">
                         <Col span={2}>
                             <b>大頭貼</b>
                         </Col>
@@ -58,7 +58,7 @@ export default class UserList extends React.Component{
                 dataSource={userList}
                 renderItem={item => (
                     <List.Item>
-                        <Row className='user-list-row'
+                        <Row className="w-100"
                         >
                             <Col span={2}>
                                 <List.Item.Meta

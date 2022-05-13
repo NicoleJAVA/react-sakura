@@ -75,7 +75,7 @@ export default class CategoryList extends React.Component{
         <div>
             <List
                 header={
-                    <Row className="user-list-row">
+                    <Row className="w-100">
                         <Col span={2}>
                             <b>分類</b>
                         </Col>
@@ -94,7 +94,7 @@ export default class CategoryList extends React.Component{
                 dataSource={categoryList}
                 renderItem={item => (
                     <List.Item>
-                        <Row className='user-list-row'
+                        <Row className='w-100'
                         >
                             <Col span={2}>
                                 <List.Item.Meta
