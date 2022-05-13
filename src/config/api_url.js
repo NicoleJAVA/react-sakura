@@ -1,7 +1,12 @@
 const ApiUrl = {
+  
+  // user:
+
   USER_LOGIN : '/api/user/login',
 
   USER_LIST: '/api/admin/user/list',
+
+  // category: 
 
   CATEGORY_ALL: '/api/admin/category/all',
 
@@ -12,6 +17,16 @@ const ApiUrl = {
   CATEGORY_EDIT: '/api/admin/category/edit',
 
   UPLOAD_CATEGORY: '/api/admin/upload/category',
+
+  // product: 
+
+  PRODUCT_LIST: '/api/admin/good/list',
+
+  PRODUCT_DELETE: '/api/admin/good/delete',
+
+  PRODUCT_ADD: '/api/admin/good/add',
+
+  PRODUCT_EDIT: '/api/admin/good/edit',
 };
 
 export default ApiUrl;

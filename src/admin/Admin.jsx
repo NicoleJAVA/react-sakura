@@ -7,6 +7,7 @@ import UserList from '../user/UserList';
 import CategoryList from '../category/CategoryList';
 import EditCategory from '../category/EditCategory';
 import AddCategory from '../category/AddCategory';
+import ProductList from '../product/ProductList';
 
 const { Content, Footer, Sider } = Layout;
 const { SubMenu } = Menu;
@@ -32,7 +33,11 @@ export default class Admin extends React.Component{
 
   onClickAddCategory = (e) => {
     this.props.history.push('/admin/category/add');
-};
+  };
+
+  onClickProductList = (e) => {
+    this.props.history.push('/admin/product/list');
+  };
 
   render(){
       return(
@@ -73,7 +78,7 @@ export default class Admin extends React.Component{
                     }
                   >
 
-                    <Menu.Item key="productList">商品列表</Menu.Item> 
+                    <Menu.Item key="productList" onClick={this.onClickProductList}>商品列表</Menu.Item> 
                     <Menu.Item key="addProduct">新增商品</Menu.Item> 
                   </SubMenu>
 
@@ -107,7 +112,11 @@ export default class Admin extends React.Component{
                         <Breadcrumb.Item>工作台</Breadcrumb.Item>
                       </Breadcrumb>
                       <div className="admin-route-container">
+
                         <Route path="/admin/user/list" component={UserList}/>
+                        {/* product: */}
+                        <Route path="/admin/product/list" component={ProductList}/>
+                        {/* category: */}
                         <Route path="/admin/category/list" component={CategoryList}/>
                         <Route path="/admin/category/add" component={AddCategory}/>
                         <Route path="/admin/category/edit/:id" component={EditCategory}/>
