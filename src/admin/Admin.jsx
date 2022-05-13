@@ -60,7 +60,7 @@ export default class Admin extends React.Component{
                     }
                   >
 
-                    <Menu.Item key="userList">帳號列表</Menu.Item> 
+                    <Menu.Item key="userList" onClick={this.onClickUserList}>帳號列表</Menu.Item> 
                   </SubMenu>
 
                   <SubMenu
