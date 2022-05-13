@@ -21,7 +21,7 @@ export default class AddProduct extends React.Component {
       amount: "100", // initialize product amount
       productSN: "1122", // product sn. for initialization
       images: "",
-      detail: "",
+      detailHtml: "",
       freight: "0",
       v1List: [],
       v2List: [],
@@ -31,8 +31,30 @@ export default class AddProduct extends React.Component {
   componentDidMount() {
     this._isMounted = true;
     this.getCategoryList();
+    this.initEditor();
   }
 
+  initEditor = () => {
+    const editor = new E(this.refs.toolbar, this.refs.editor);
+    editor.customConfig.zIndex = 100; // set 100 to ensure that it won't be occluded by others
+    editor.customConfig.uploadImgServer = ApiUrl.UPLOAD_EDITOR;
+    editor.customConfig.uploadImgHeaders = TokenHeaders;
+    editor.customConfig.uploadFileName = "file";
+    editor.customConfig.onchange = (html) => {
+      this.setState({
+        detailHtml: html,
+      });
+      //   console.log("測試: HTML", html);
+    };
+    editor.customConfig.uploadImgHooks = {
+      customInsert: (insertImg, result, editor2) => {
+        let url = result.url;
+        // console.log("測試: URL", url);
+        insertImg(url);
+      },
+    };
+    editor.create();
+  };
   componentWillUnmount() {
     this._isMounted = false;
   }
@@ -73,7 +95,6 @@ export default class AddProduct extends React.Component {
           v2List: data,
         });
       }
-      printArray(this.state.v2List);
     });
   };
 
