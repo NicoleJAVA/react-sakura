@@ -3,7 +3,7 @@ import axios from "axios";
 import ApiUrl from "../config/api_url";
 import TokenHeaders from "../utils/tokenUtils";
 import { Button, Select, Input, Upload, Form } from "antd";
-import { PlusOutlined } from "@ant-design/icons";
+import { UploadOutlined } from "@ant-design/icons";
 import E from "wangeditor";
 import printArray from "../utils/LogUtils";
 
@@ -243,6 +243,24 @@ export default class AddProduct extends React.Component {
               </Option>
             ))}
           </Select>
+        </Form.Item>
+        <Form.Item label="商品圖片">
+          <Upload
+            headers={TokenHeaders}
+            accept="images/*"
+            listType="picture"
+            action={ApiUrl.UPLOAD_IMAGE}
+            onChange={this.onUploadChange}
+          >
+            <Button>
+              <UploadOutlined /> 上傳
+            </Button>
+          </Upload>
+        </Form.Item>
+        <Form.Item label="商品詳情">
+          <div ref="toolbar" className="wang-toolbar"></div>
+          <div ref="editor" className="wang-text-container"></div>
+          <Button className="theme-submit-btn mt-2">確認</Button>
         </Form.Item>
       </Form>
     );

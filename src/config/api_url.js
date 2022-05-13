@@ -28,6 +28,8 @@ const ApiUrl = {
   PRODUCT_ADD: "/api/admin/good/add",
 
   PRODUCT_EDIT: "/api/admin/good/edit",
+
+  UPLOAD_IMAGE: "/api/admin/upload/images",
 };
 
 export default ApiUrl;
