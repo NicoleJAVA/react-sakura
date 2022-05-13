@@ -131,19 +131,19 @@ export default class AddCategory extends React.Component{
           </div>
       );
       return(
-        <div className="category-layout">
+        <div>
           <Card>
               <Form>
                   <Form.Item label="分類名稱">
                       <Input 
-                        className="add-category-input"
+                        className="theme-input"
                         placeholder="子分類名稱"
                         value={this.state.name}
                         onChange={(e) => {this.setCategoryName(e.target.value)}}
                       />
                   </Form.Item>
                   <Form.Item label="分類等級">
-                      <Select className='add-category-select' 
+                      <Select className='theme-select' 
                         defaultValue={this.state.level} 
                         value={this.state.level}
                         onSelect = {this.setLevel}
@@ -153,7 +153,7 @@ export default class AddCategory extends React.Component{
                       </Select>
                   </Form.Item>
                   <Form.Item label="父分類名稱">
-                      <Select className='add-category-select' defaultValue={this.state.pid} value={this.state.pid}
+                      <Select className='theme-select' defaultValue={this.state.pid} value={this.state.pid}
                         onSelect = {this.setParentId}
                       >
                           {
@@ -174,7 +174,7 @@ export default class AddCategory extends React.Component{
                           {uploadButton}
                       </Upload>
                   </Form.Item>
-                  <Button type="primary" className="add-category-submit-btn" onClick={this.onClickSubmit}>確定</Button>
+                  <Button type="primary" className="theme-submit-btn" onClick={this.onClickSubmit}>確定</Button>
               </Form>
           </Card>
         </div>

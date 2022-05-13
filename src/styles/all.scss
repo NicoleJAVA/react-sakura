@@ -6,7 +6,11 @@
 @import './scss/helpers/text';
 @import './scss/helpers/layout';
 
+// component
+@import './scss/component/select';
+@import './scss/component/input';
+@import './scss/component/button';
+
 // page
 @import './scss/page/login';
 @import './scss/page/admin';
-@import './scss/page/add_category';
