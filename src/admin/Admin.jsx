@@ -2,6 +2,7 @@ import React from 'react';
 import {Layout, Menu, Breadcrumb, Input, Icon, Button, message} from 'antd';
 import { Route } from 'react-router-dom';
 import { Redirect } from 'react-router-dom';
+import Home from '../Home';
 import UserList from '../user/UserList';
 import CategoryList from '../category/CategoryList';
 import EditCategory from '../category/EditCategory';
@@ -14,6 +15,10 @@ export default class Admin extends React.Component{
 
   constructor(props) {
     super(props);
+  }
+
+  onClickHome = (e) => {
+      this.props.history.push('/admin/home');
   }
 
   onClickUserList = (e) => {
@@ -39,7 +44,7 @@ export default class Admin extends React.Component{
                     defaultSelectedKeys={['1']} 
                     mode="inline" 
                     defaultOpenKeys={['/user', '/product', '/category']}>
-                      <Menu.Item key="1">
+                      <Menu.Item key="1" onClick={this.onClickHome}>
                           <Icon type="pie-chart"/>
                           <span>首頁</span>
                       </Menu.Item>
@@ -106,7 +111,10 @@ export default class Admin extends React.Component{
                         <Route path="/admin/category/list" component={CategoryList}/>
                         <Route path="/admin/category/add" component={AddCategory}/>
                         <Route path="/admin/category/edit/:id" component={EditCategory}/>
-                        <Redirect to="/admin/user/list" />
+
+                        {/* home */}
+                        <Route path="/admin/home" component={Home}/>
+                        <Redirect to="/admin/home" component={Home}/>
                       </div>
                   </Content>
                   <Footer>Sakura Shop</Footer>
