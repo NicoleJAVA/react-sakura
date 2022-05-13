@@ -83,7 +83,7 @@ export default class Admin extends React.Component{
                   >
 
                     <Menu.Item key="productList" onClick={this.onClickProductList}>商品列表</Menu.Item> 
-                    <Menu.Item key="addProduct">新增商品</Menu.Item> 
+                    <Menu.Item key="addProduct" onClick={this.onClickAddProduct}>新增商品</Menu.Item> 
                   </SubMenu>
 
                   <SubMenu
@@ -120,6 +120,7 @@ export default class Admin extends React.Component{
                         <Route path="/admin/user/list" component={UserList}/>
                         {/* product: */}
                         <Route path="/admin/product/list" component={ProductList}/>
+                        <Route path="/admin/product/add" component={AddProduct}/>
                         {/* category: */}
                         <Route path="/admin/category/list" component={CategoryList}/>
                         <Route path="/admin/category/add" component={AddCategory}/>

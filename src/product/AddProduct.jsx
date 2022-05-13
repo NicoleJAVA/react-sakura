@@ -1,0 +1,206 @@
+import React from "react";
+import axios from "axios";
+import ApiUrl from "../config/api_url";
+import TokenHeaders from "../utils/tokenUtils";
+import { Button, Select, Card, Input, Upload, Form } from "antd";
+import { PlusOutlined } from "@ant-design/icons";
+import E from "wangeditor";
+
+const { Option } = Select;
+
+export default class AddProduct extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      categoryFirst: "103", // id for initialization
+      categorySecond: "107", // id for initialization
+      name: "",
+      price: "",
+      discountPrice: "",
+      amount: "100", // initialize product amount
+      productSN: "1122", // product sn. for initialization
+      images: "",
+      detail: "",
+      freight: "0",
+
+      v1List: [],
+      v2List: [],
+    };
+  }
+
+  componentDidMount() {
+    this._isMounted = true;
+    // this.getProductList();
+  }
+
+  componentWillUnmount() {
+    this._isMounted = false;
+  }
+
+  getCategoryList = () => {
+    axios({
+      method: "get",
+      url: ApiUrl.CATEGORY_ALL,
+      headers: TokenHeaders,
+    }).then((res) => {
+      let data = res.data.data;
+
+      // TODO: handle category events
+    });
+  };
+
+  //   getProductList = () => {
+  //     axios({
+  //       method: "get",
+  //       url: ApiUrl.PRODUCT_LIST,
+  //       headers: TokenHeaders,
+  //     }).then((res) => {
+  //       let data = res.data.data;
+
+  //       if (this._isMounted) {
+  //         this.setState({
+  //           productList: data,
+  //         });
+  //       }
+  //     });
+  //   };
+
+  setProductName = (name) => {
+    this.setState({
+      name: name,
+    });
+  };
+
+  setProductPrice = (price) => {
+    this.setState({
+      price: price,
+    });
+  };
+
+  setProductDiscountPrice = (discountPrice) => {
+    this.setState({
+      discountPrice: discountPrice,
+    });
+  };
+
+  setProductFreight = (freight) => {
+    this.setState({
+      freight: freight,
+    });
+  };
+
+  setProductAmount = (amount) => {
+    this.setState({
+      amount: amount,
+    });
+  };
+
+  //   setLevel = (level) => {
+  //     this.setState({
+  //       level: level,
+  //     });
+  //   };
+
+  //   setParentId = (pid) => {
+  //     this.setState({
+  //       pid: pid,
+  //     });
+  //   };
+
+  //   onClickSubmit = () => {
+  //     this.setState({
+  //       modelVisible: false,
+  //     });
+
+  //     let dataProps = {
+  //       id: this.state.id,
+  //       image: this.state.image,
+  //       name: this.state.name,
+  //       level: this.state.level,
+  //       pid: this.state.pid,
+  //     };
+
+  //     axios({
+  //       method: "post",
+  //       url: ApiUrl.PRODUCT_ADD,
+  //       headers: TokenHeaders,
+  //       data: dataProps,
+  //     }).then((res) => {
+  //       this.props.history.push("/admin/product/list");
+  //     });
+  //   };
+
+  //   onClickCancel = () => {
+  //     this.setState({
+  //       modelVisible: false,
+  //     });
+  //     this.props.history.push("/admin/product/list");
+  //   };
+
+  onChange = (file, fileList, event) => {
+    if (file.file.status === "done") {
+      // console.log('檔案', file.fileList);
+      let result = [];
+      file.fileList.forEach((item, index) => {
+        result.push(item.response.url);
+      });
+      this.setState({
+        images: result.toString(),
+      });
+
+      // console.log('圖片', this.state.image);
+    }
+  };
+
+  render() {
+    return (
+      <Form>
+        <Form.Item label="品名">
+          <Input
+            className="theme-input"
+            value={this.state.name}
+            onChange={(e) => {
+              this.setProductName(e.target.value);
+            }}
+          ></Input>
+        </Form.Item>
+        <Form.Item label="原價">
+          <Input
+            className="theme-input"
+            value={this.state.price}
+            onChange={(e) => {
+              this.setProductPrice(e.target.value);
+            }}
+          ></Input>
+        </Form.Item>
+        <Form.Item label="售價">
+          <Input
+            className="theme-input"
+            value={this.state.discountPrice}
+            onChange={(e) => {
+              this.setProductDiscountPrice(e.target.value);
+            }}
+          ></Input>
+        </Form.Item>
+        <Form.Item label="運費">
+          <Input
+            className="theme-input"
+            value={this.state.freight}
+            onChange={(e) => {
+              this.setProductFreight(e.target.value);
+            }}
+          ></Input>
+        </Form.Item>
+        <Form.Item label="數量">
+          <Input
+            className="theme-input"
+            value={this.state.amount}
+            onChange={(e) => {
+              this.setProductAmount(e.target.value);
+            }}
+          ></Input>
+        </Form.Item>
+      </Form>
+    );
+  }
+}
