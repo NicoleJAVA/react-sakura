@@ -1,37 +1,37 @@
 const ApiUrl = {
   // user:
 
-  USER_LOGIN: "/api/user/login",
+  USER_LOGIN: '/api/user/login',
 
-  USER_LIST: "/api/admin/user/list",
+  USER_LIST: '/api/admin/user/list',
 
   // category:
 
-  CATEGORY_ALL: "/api/admin/category/all",
+  CATEGORY_ALL: '/api/admin/category/all',
 
-  CATEGORY_DELETE: "/api/admin/category/delete",
+  CATEGORY_DELETE: '/api/admin/category/delete',
 
-  CATEGORY_ADD: "/api/admin/category/add",
+  CATEGORY_ADD: '/api/admin/category/add',
 
-  CATEGORY_EDIT: "/api/admin/category/edit",
+  CATEGORY_EDIT: '/api/admin/category/edit',
 
-  UPLOAD_CATEGORY: "/api/admin/upload/category",
+  UPLOAD_CATEGORY: '/api/admin/upload/category',
 
-  CATEGORY_SUB: "/api/admin/category/sub",
+  CATEGORY_SUB: '/api/admin/category/sub',
 
   // product:
 
-  PRODUCT_LIST: "/api/admin/good/list",
+  PRODUCT_LIST: '/api/admin/good/list',
 
-  PRODUCT_DELETE: "/api/admin/good/delete",
+  PRODUCT_DELETE: '/api/admin/good/delete',
 
-  PRODUCT_ADD: "/api/admin/good/add",
+  PRODUCT_ADD: '/api/admin/good/add',
 
-  PRODUCT_EDIT: "/api/admin/good/edit",
+  PRODUCT_EDIT: '/api/admin/good/edit',
 
-  UPLOAD_IMAGE: "/api/admin/upload/images",
+  UPLOAD_IMAGE: '/api/admin/upload/images',
 
-  UPLOAD_EDITOR: "/api/admin/upload/editor",
+  UPLOAD_EDITOR: '/api/admin/upload/editor',
 };
 
 export default ApiUrl;

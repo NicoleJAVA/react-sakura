@@ -16,25 +16,25 @@ $admin-route-container-padding: 24px;
 $admin-route-container-minheight: 360px;
 
 .menu-title {
-    height: $menu-title-height;
-    margin: $menu-title-margin;
-    color: white;
+  height: $menu-title-height;
+  margin: $menu-title-margin;
+  color: white;
 }
 
 .admin-menu-layout {
-    min-height: $menu-layout-min-height !important;
+  min-height: $menu-layout-min-height !important;
 }
 
 .admin-content {
-    margin: 0 $admin-content-margin-x;
+  margin: 0 $admin-content-margin-x;
 }
 
 .admin-breadcrumb {
-    margin: $admin-breadcrumb-margin-y 0 !important;
+  margin: $admin-breadcrumb-margin-y 0 !important;
 }
 
 .admin-route-container {
-    padding: $admin-route-container-padding !important;
-    min-height: $admin-route-container-minheight !important;
-    background: white;
+  padding: $admin-route-container-padding !important;
+  min-height: $admin-route-container-minheight !important;
+  background: white;
 }

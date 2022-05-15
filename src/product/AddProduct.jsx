@@ -1,11 +1,11 @@
-import React from "react";
-import axios from "axios";
-import ApiUrl from "../config/api_url";
-import TokenHeaders from "../utils/tokenUtils";
-import { Button, Select, Input, Upload, Form, message } from "antd";
-import { UploadOutlined } from "@ant-design/icons";
-import E from "wangeditor";
-import printArray from "../utils/LogUtils";
+import React from 'react';
+import axios from 'axios';
+import ApiUrl from '../config/api_url';
+import TokenHeaders from '../utils/tokenUtils';
+import { Button, Select, Input, Upload, Form, message } from 'antd';
+import { UploadOutlined } from '@ant-design/icons';
+import E from 'wangeditor';
+import printArray from '../utils/LogUtils';
 
 const { Option } = Select;
 
@@ -13,16 +13,16 @@ export default class AddProduct extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      categoryFirst: "103", // id for initialization
-      categorySecond: "107", // id for initialization
-      name: "",
-      price: "",
-      discountPrice: "",
-      amount: "100", // initialize product amount
-      productSN: "1122", // product sn. for initialization
-      images: "",
-      detailHtml: "",
-      freight: "0",
+      categoryFirst: '103', // id for initialization
+      categorySecond: '107', // id for initialization
+      name: '',
+      price: '',
+      discountPrice: '',
+      amount: '100', // initialize product amount
+      productSN: '1122', // product sn. for initialization
+      images: '',
+      detailHtml: '',
+      freight: '0',
       v1List: [],
       v2List: [],
     };
@@ -39,7 +39,7 @@ export default class AddProduct extends React.Component {
     editor.customConfig.zIndex = 100; // set 100 to ensure that it won't be occluded by others
     editor.customConfig.uploadImgServer = ApiUrl.UPLOAD_EDITOR;
     editor.customConfig.uploadImgHeaders = TokenHeaders;
-    editor.customConfig.uploadFileName = "file";
+    editor.customConfig.uploadFileName = 'file';
     editor.customConfig.onchange = (html) => {
       this.setState({
         detailHtml: html,
@@ -61,14 +61,14 @@ export default class AddProduct extends React.Component {
 
   getCategoryList = () => {
     axios({
-      method: "get",
+      method: 'get',
       url: ApiUrl.CATEGORY_ALL,
       headers: TokenHeaders,
     }).then((res) => {
       let data = res.data.data;
       let v1List = [];
       data.forEach((item, index) => {
-        if (item.level === "V1") {
+        if (item.level === 'V1') {
           v1List.push(item);
           //   printArray(v1List, "新增 " + item.name + " 至 v1List");
         }
@@ -83,9 +83,9 @@ export default class AddProduct extends React.Component {
   };
 
   onV1SelectChanged = (id) => {
-    let url = ApiUrl.CATEGORY_SUB + "?pid=" + id;
+    let url = ApiUrl.CATEGORY_SUB + '?pid=' + id;
     axios({
-      method: "get",
+      method: 'get',
       url: url,
       headers: TokenHeaders,
     }).then((res) => {
@@ -143,17 +143,17 @@ export default class AddProduct extends React.Component {
     };
 
     axios({
-      method: "post",
+      method: 'post',
       url: ApiUrl.PRODUCT_ADD,
       headers: TokenHeaders,
       data: formData,
     }).then((res) => {
-      message.success("新增商品「" + formData.name + "」成功！");
+      message.success('新增商品「' + formData.name + '」成功！');
     });
   };
 
   onChange = (file, fileList, event) => {
-    if (file.file.status === "done") {
+    if (file.file.status === 'done') {
       // console.log('檔案', file.fileList);
       let result = [];
       file.fileList.forEach((item, index) => {
