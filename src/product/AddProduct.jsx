@@ -2,7 +2,7 @@ import React from "react";
 import axios from "axios";
 import ApiUrl from "../config/api_url";
 import TokenHeaders from "../utils/tokenUtils";
-import { Button, Select, Input, Upload, Form } from "antd";
+import { Button, Select, Input, Upload, Form, message } from "antd";
 import { UploadOutlined } from "@ant-design/icons";
 import E from "wangeditor";
 import printArray from "../utils/LogUtils";
@@ -98,22 +98,6 @@ export default class AddProduct extends React.Component {
     });
   };
 
-  //   getProductList = () => {
-  //     axios({
-  //       method: "get",
-  //       url: ApiUrl.PRODUCT_LIST,
-  //       headers: TokenHeaders,
-  //     }).then((res) => {
-  //       let data = res.data.data;
-
-  //       if (this._isMounted) {
-  //         this.setState({
-  //           productList: data,
-  //         });
-  //       }
-  //     });
-  //   };
-
   setProductName = (name) => {
     this.setState({
       name: name,
@@ -144,47 +128,29 @@ export default class AddProduct extends React.Component {
     });
   };
 
-  //   setLevel = (level) => {
-  //     this.setState({
-  //       level: level,
-  //     });
-  //   };
+  onClickSubmit = () => {
+    let formData = {
+      category_first: this.state.categoryFirst,
+      category_second: this.state.categorySecond,
+      name: this.state.name,
+      price: this.state.price,
+      discount_price: this.state.discountPrice,
+      count: this.state.amount,
+      good_sn: this.state.productSN,
+      images: this.state.images,
+      detail: this.state.detailHtml,
+      freight: this.state.freight,
+    };
 
-  //   setParentId = (pid) => {
-  //     this.setState({
-  //       pid: pid,
-  //     });
-  //   };
-
-  //   onClickSubmit = () => {
-  //     this.setState({
-  //       modelVisible: false,
-  //     });
-
-  //     let dataProps = {
-  //       id: this.state.id,
-  //       image: this.state.image,
-  //       name: this.state.name,
-  //       level: this.state.level,
-  //       pid: this.state.pid,
-  //     };
-
-  //     axios({
-  //       method: "post",
-  //       url: ApiUrl.PRODUCT_ADD,
-  //       headers: TokenHeaders,
-  //       data: dataProps,
-  //     }).then((res) => {
-  //       this.props.history.push("/admin/product/list");
-  //     });
-  //   };
-
-  //   onClickCancel = () => {
-  //     this.setState({
-  //       modelVisible: false,
-  //     });
-  //     this.props.history.push("/admin/product/list");
-  //   };
+    axios({
+      method: "post",
+      url: ApiUrl.PRODUCT_ADD,
+      headers: TokenHeaders,
+      data: formData,
+    }).then((res) => {
+      message.success("新增商品「" + formData.name + "」成功！");
+    });
+  };
 
   onChange = (file, fileList, event) => {
     if (file.file.status === "done") {
@@ -281,7 +247,13 @@ export default class AddProduct extends React.Component {
         <Form.Item label="商品詳情">
           <div ref="toolbar" className="wang-toolbar"></div>
           <div ref="editor" className="wang-text-container"></div>
-          <Button className="theme-submit-btn mt-2">確認</Button>
+          <br />
+          <Button
+            className="theme-submit-btn mt-2"
+            onClick={this.onClickSubmit}
+          >
+            確認
+          </Button>
         </Form.Item>
       </Form>
     );
